@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTaskActivity">
+
+    <TextView
+        android:id="@+id/task_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="fill"
+        android:text="@string/task_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/task_description"
+        android:layout_width="0dp"
+        android:layout_height="152dp"
+        android:gravity="fill"
+        android:text="@string/task_description"
+        app:layout_constraintBottom_toTopOf="@+id/task_date_due"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_title" />
+
+    <EditText
+        android:id="@+id/task_date_due"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/task_due_date"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_description" />
+
+
+    <Button
+        android:id="@+id/button_task_save"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:text="@string/task_save"
+        app:layout_constraintEnd_toStartOf="@+id/button_cancel"
+        app:layout_constraintStart_toStartOf="@+id/task_date_due"
+        app:layout_constraintTop_toBottomOf="@+id/task_date_due" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:text="@string/task_cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_task_save"
+        app:layout_constraintTop_toBottomOf="@+id/task_date_due"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

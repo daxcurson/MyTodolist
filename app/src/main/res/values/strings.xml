@@ -9,4 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="task_title">Title</string>
+    <string name="task_description">Description</string>
+    <string name="task_due_date">Due date</string>
+    <string name="task_save">Save Task</string>
+    <string name="task_cancel">Cancel</string>
+    <string name="task_saved">Task Saved</string>
 </resources>
