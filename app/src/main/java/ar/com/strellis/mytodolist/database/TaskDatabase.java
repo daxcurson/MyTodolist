@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,6 +14,7 @@ import ar.com.strellis.mytodolist.dao.TaskDAO;
 import ar.com.strellis.mytodolist.model.Task;
 
 @Database(entities={Task.class},version = 1,exportSchema = false)
+@TypeConverters({DateConverter.class})
 public abstract class TaskDatabase extends RoomDatabase
 {
     public abstract TaskDAO taskDao();

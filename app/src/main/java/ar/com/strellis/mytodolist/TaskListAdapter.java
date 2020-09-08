@@ -1,25 +1,24 @@
 package ar.com.strellis.mytodolist;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import ar.com.strellis.mytodolist.dummy.DummyContent.DummyItem;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ar.com.strellis.mytodolist.model.Task;
+
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
+ * {@link RecyclerView.Adapter} that can display a {@link Task}.
  */
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Task> mValues;
 
-    public MyItemRecyclerViewAdapter(List<DummyItem> items) {
+    public TaskListAdapter(List<Task> items) {
         mValues = items;
     }
 
@@ -32,9 +31,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        if(mValues!=null) {
+            holder.mItem = mValues.get(position);
+            holder.mIdView.setText(mValues.get(position).getId());
+            holder.mContentView.setText(mValues.get(position).getTitle());
+        }
+        else
+        {
+            holder.mContentView.setText(R.string.nothing_to_do);
+        }
     }
 
     @Override
@@ -46,7 +51,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Task mItem;
 
         public ViewHolder(View view) {
             super(view);

@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.LinkedList;
+
 import ar.com.strellis.mytodolist.database.TaskDatabase;
 
 public class MainActivity extends AppCompatActivity {

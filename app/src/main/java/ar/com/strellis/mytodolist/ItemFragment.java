@@ -2,17 +2,18 @@ package ar.com.strellis.mytodolist;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.LinkedList;
 
-import ar.com.strellis.mytodolist.dummy.DummyContent;
+import ar.com.strellis.mytodolist.model.Task;
 
 /**
  * A fragment representing a list of Items.
@@ -64,7 +65,7 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS));
+            recyclerView.setAdapter(new TaskListAdapter(new LinkedList<Task>()));
         }
         return view;
     }
