@@ -7,13 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import ar.com.strellis.mytodolist.model.Task;
+import ar.com.strellis.mytodolist.view.TaskViewModel;
 
 /**
  * A fragment representing a list of Items.
@@ -24,6 +28,7 @@ public class ItemFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private TaskViewModel taskViewModel;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,7 +70,15 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TaskListAdapter(new LinkedList<Task>()));
+            TaskListAdapter adapter=new TaskListAdapter(new LinkedList<Task>());
+            recyclerView.setAdapter(adapter);
+            taskViewModel=new ViewModelProvider(this).get(TaskViewModel.class);
+            taskViewModel.getAllTasksByDateAdded().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
+                @Override
+                public void onChanged(List<Task> tasks) {
+                    adapter.setTasks(tasks);
+                }
+            });
         }
         return view;
     }

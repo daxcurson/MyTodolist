@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import ar.com.strellis.mytodolist.model.Task;
@@ -16,12 +18,17 @@ import ar.com.strellis.mytodolist.model.Task;
  */
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
-    private final List<Task> mValues;
+    private List<Task> mValues;
 
     public TaskListAdapter(List<Task> items) {
         mValues = items;
     }
 
+    public void setTasks(List<Task> items)
+    {
+        mValues=items;
+    }
+    @NotNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -30,7 +37,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull final ViewHolder holder, int position) {
         if(mValues!=null) {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(mValues.get(position).getId());
@@ -47,7 +54,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
@@ -56,10 +63,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
         }
 
+        @NotNull
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";

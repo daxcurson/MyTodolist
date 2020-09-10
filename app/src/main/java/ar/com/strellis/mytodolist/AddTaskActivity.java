@@ -35,12 +35,12 @@ public class AddTaskActivity extends AppCompatActivity {
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf=new SimpleDateFormat("d/m/Y");
             try {
                 task.setDateDue(sdf.parse(due_date));
+                MainActivity.database.taskDao().insert(task);
+                Snackbar.make(v, getString(R.string.task_saved), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            MainActivity.database.taskDao().insert(task);
-            Snackbar.make(v, getString(R.string.task_saved), Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
             finish();
         }
         );
